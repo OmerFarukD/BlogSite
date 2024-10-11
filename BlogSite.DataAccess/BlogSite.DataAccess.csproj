@@ -7,10 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\" />
-    <Folder Include="Concretes\" />
-    <Folder Include="Contexts\" />
     <Folder Include="Configurattions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlogSite.Models\BlogSite.Models.csproj" />
   </ItemGroup>
 
 </Project>
