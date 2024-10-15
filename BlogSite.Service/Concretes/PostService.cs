@@ -5,6 +5,7 @@ using BlogSite.Models.Dtos.Posts.Requests;
 using BlogSite.Models.Dtos.Posts.Responses;
 using BlogSite.Models.Entities;
 using BlogSite.Service.Abstratcts;
+using Core.Responses;
 
 namespace BlogSite.Service.Concretes;
 
@@ -19,20 +20,30 @@ public class PostService : IPostService
         _mapper = mapper;
     }
 
-    public Post Add(CreatePostRequest create)
+    public ReturnModel<PostResponseDto> Add(CreatePostRequest create)
     {
-        Post post = _mapper.Map<Post>(create);
-        Post createdPost = _postRepository.Add(post);
+        Post createdPost = _mapper.Map<Post>(create);
+        createdPost.Id = Guid.NewGuid();
 
-        return createdPost;
+        _postRepository.Add(createdPost);
+
+        PostResponseDto response = _mapper.Map<PostResponseDto>(createdPost);
+
+        return new ReturnModel<PostResponseDto>
+        {
+            Data = response,
+            Message = "Post Eklendi.",
+            StatusCode = 200,
+            Success = true
+        };
     }
 
-    public List<PostResponseDto> GetAll()
+    public ReturnModel<List<PostResponseDto>> GetAll()
     {
         throw new NotImplementedException();
     }
 
-    public PostResponseDto? GetById(Guid id)
+    public ReturnModel<PostResponseDto?> GetById(Guid id)
     {
         throw new NotImplementedException();
     }
