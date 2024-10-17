@@ -26,5 +26,12 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .OnDelete(DeleteBehavior.NoAction);
 
 
+
+        builder.HasData(new Category
+        {
+            Id = 1,
+            Name = "Yazılım",
+            CreatedDate = DateTime.Now
+        });
     }
 }
