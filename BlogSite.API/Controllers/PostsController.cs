@@ -24,4 +24,25 @@ public class PostsController(IPostService _postService): ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("getbyid/{id}")]
+    public IActionResult GetById([FromRoute]Guid id)
+    {
+        var result = _postService.GetById(id);
+        return Ok(result);
+    }
+
+    [HttpDelete("delete")]
+    public IActionResult Delete([FromQuery]Guid id)
+    {
+        var result = _postService.Remove(id);
+        return Ok(result);
+    }
+
+    [HttpPut("update")]
+    public IActionResult Update([FromBody] UpdatePostRequest dto)
+    {
+        var result = _postService.Update(dto);
+        return Ok(result);
+    }
+
 }
