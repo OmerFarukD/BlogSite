@@ -5,5 +5,6 @@ namespace BlogSite.DataAccess.Abstracts
 {
     public interface IPostRepository : IRepository<Post,Guid>
     {
+    
     }
 }

@@ -45,4 +45,11 @@ public class PostsController(IPostService _postService): ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("author")]
+    public IActionResult GetAllByAuthorId([FromQuery]long authorId)
+    {
+        var result = _postService.GetAllByAuthorId(authorId);
+        return Ok(result);
+    }
+
 }
