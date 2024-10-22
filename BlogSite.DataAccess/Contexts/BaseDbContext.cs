@@ -1,10 +1,12 @@
 ﻿using BlogSite.Models.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace BlogSite.DataAccess.Contexts;
 
-public class BaseDbContext : DbContext
+public class BaseDbContext : IdentityDbContext<User,IdentityRole,string>
 {
     public BaseDbContext(DbContextOptions opt): base(opt)
     {
@@ -15,8 +17,6 @@ public class BaseDbContext : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-
-    public DbSet<User> Users { get; set; }
 
     public DbSet<Comment> Comments { get; set; }
 
