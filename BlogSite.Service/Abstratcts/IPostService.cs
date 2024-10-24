@@ -17,5 +17,5 @@ public interface IPostService
 
     ReturnModel<List<PostResponseDto>> GetAllByCategoryId(int id);
 
-    ReturnModel<List<PostResponseDto>> GetAllByAuthorId(long id);
+    ReturnModel<List<PostResponseDto>> GetAllByAuthorId(string id);
 }

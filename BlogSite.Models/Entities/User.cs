@@ -1,5 +1,4 @@
-﻿using Core.Entities;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace BlogSite.Models.Entities;
 

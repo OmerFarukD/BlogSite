@@ -1,5 +1,6 @@
 ﻿using BlogSite.Models.Dtos.Users.Requests;
 using BlogSite.Service.Abstratcts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

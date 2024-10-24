@@ -14,6 +14,6 @@ public class MappingProfiles: Profile
         CreateMap<UpdatePostRequest, Post>();
         CreateMap<Post, PostResponseDto>()
             .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Name))
-            .ForMember(x=> x.UserName,opt=>opt.MapFrom(X=>X.Author.Username));
+            .ForMember(x=> x.UserName,opt=>opt.MapFrom(X=>X.Author.UserName));
     }
 }

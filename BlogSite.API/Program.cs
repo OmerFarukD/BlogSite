@@ -7,11 +7,8 @@ using BlogSite.Service.Concretes;
 using BlogSite.Service.Profiles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
@@ -24,9 +21,11 @@ builder.Services.AddScoped<IPostService,PostService>();
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
     opt.User.RequireUniqueEmail = true;
-    opt.Password.RequiredUniqueChars = false;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredLength = 8;
 
-});
+
+}).AddEntityFrameworkStores<BaseDbContext>();
 
 
 builder.Services.AddEndpointsApiExplorer();
