@@ -9,13 +9,38 @@ namespace BlogSite.Service.Concretes;
 
 public sealed class UserService(UserManager<User> _userManager) : IUserService
 {
-    public Task<User> GetByEmail(string email)
+    public async Task<User> GetByEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user is null)
+        {
+            Console.WriteLine("Kullanıcı bulunamadı.");
+        }
+
+        return user;
     }
 
-    public Task<User> Register(RegisterRequestDto dto)
+    public async Task<User> RegisterAsync(RegisterRequestDto dto)
     {
-        throw new NotImplementedException();
+        User user = new User
+        {
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            Email = dto.Email,
+            City = dto.City,
+            UserName = dto.Username,
+           
+        };
+
+        var result =await _userManager.CreateAsync(user,dto.Password);
+
+        if (!result.Succeeded)
+        {
+            Console.WriteLine(result.Errors.ToList().First().Description);
+        }
+
+        return user;
+
     }
 }

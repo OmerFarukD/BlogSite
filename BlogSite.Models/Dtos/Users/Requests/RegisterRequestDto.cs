@@ -8,8 +8,8 @@ namespace BlogSite.Models.Dtos.Users.Requests;
 
 public sealed record RegisterRequestDto
     (
-    string Name,
-    string Surname,
+    string FirstName,
+    string LastName,
     string Email,
     string Password,
     string Username,

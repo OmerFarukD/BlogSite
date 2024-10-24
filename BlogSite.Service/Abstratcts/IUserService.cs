@@ -11,7 +11,7 @@ namespace BlogSite.Service.Abstratcts;
 public interface IUserService
 {
 
-    Task<User> Register(RegisterRequestDto dto);
-    Task<User> GetByEmail(string email);
+    Task<User> RegisterAsync(RegisterRequestDto dto);
+    Task<User> GetByEmailAsync(string email);
 
 }

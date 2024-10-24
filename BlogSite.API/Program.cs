@@ -1,9 +1,11 @@
 using BlogSite.DataAccess.Abstracts;
 using BlogSite.DataAccess.Concretes;
 using BlogSite.DataAccess.Contexts;
+using BlogSite.Models.Entities;
 using BlogSite.Service.Abstratcts;
 using BlogSite.Service.Concretes;
 using BlogSite.Service.Profiles;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -15,7 +17,18 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddScoped<IPostRepository, EfPostRepository>();
+
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostService,PostService>();
+
+builder.Services.AddIdentity<User, IdentityRole>(opt =>
+{
+    opt.User.RequireUniqueEmail = true;
+    opt.Password.RequiredUniqueChars = false;
+
+});
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
