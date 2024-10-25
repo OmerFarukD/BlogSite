@@ -5,6 +5,7 @@ using BlogSite.Models.Entities;
 using BlogSite.Service.Abstratcts;
 using BlogSite.Service.Concretes;
 using BlogSite.Service.Profiles;
+using Core.Tokens.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,11 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddScoped<IPostRepository, EfPostRepository>();
+
+builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IAuthenticationService,AuthenticationService>();
+
+builder.Services.Configure<TokenOption>(builder.Configuration.GetSection("TokenOption"));
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostService,PostService>();
