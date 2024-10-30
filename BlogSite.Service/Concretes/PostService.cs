@@ -20,10 +20,11 @@ public sealed class PostService : IPostService
         _mapper = mapper;
     }
 
-    public ReturnModel<PostResponseDto> Add(CreatePostRequest create)
+    public ReturnModel<PostResponseDto> Add(CreatePostRequest create, string userId)
     {
         Post createdPost = _mapper.Map<Post>(create);
         createdPost.Id = Guid.NewGuid();
+        createdPost.AuthorId = userId;
 
         _postRepository.Add(createdPost);
 

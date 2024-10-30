@@ -1,5 +1,6 @@
 ﻿using BlogSite.Models.Dtos.Users.Requests;
 using BlogSite.Service.Abstratcts;
+using Core.Tokens.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,7 @@ namespace BlogSite.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthenticationController(IAuthenticationService _authenticationService) : ControllerBase
+public class AuthenticationController(IAuthenticationService _authenticationService,DecoderService decoderService) : CustomBaseController(decoderService)
 {
 
     [HttpPost("login")]

@@ -10,5 +10,5 @@ namespace BlogSite.Service.Abstratcts;
 
 public interface IJwtService
 {
-    TokenResponseDto CreateJwtToken(User user);
+    Task<TokenResponseDto> CreateJwtTokenAsync(User user);
 }
