@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSite.Models", "BlogSite.Models\BlogSite.Models.csproj", "{40985769-460A-40FC-9864-E13FEAABFB02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSite.Models", "BlogSite.Models\BlogSite.Models.csproj", "{40985769-460A-40FC-9864-E13FEAABFB02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSite.DataAccess", "BlogSite.DataAccess\BlogSite.DataAccess.csproj", "{479C3985-8D0A-4F31-B85F-710F344328B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSite.DataAccess", "BlogSite.DataAccess\BlogSite.DataAccess.csproj", "{479C3985-8D0A-4F31-B85F-710F344328B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSite.Service", "BlogSite.Service\BlogSite.Service.csproj", "{1B74770F-4652-4FC8-846E-F57D47608244}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSite.Service", "BlogSite.Service\BlogSite.Service.csproj", "{1B74770F-4652-4FC8-846E-F57D47608244}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSite.API", "BlogSite.API\BlogSite.API.csproj", "{D82B909C-2009-4487-AEA1-66052BF8480F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSite.API", "BlogSite.API\BlogSite.API.csproj", "{D82B909C-2009-4487-AEA1-66052BF8480F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{EE1661EA-60E1-4480-8EE9-D0B0C552191A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{EE1661EA-60E1-4480-8EE9-D0B0C552191A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{19D8839C-C97B-4D94-8E3D-7C2699EFF303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Tests", "Service.Tests\Service.Tests.csproj", "{8709B894-979D-461C-A952-B7AE34AF8EF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{EE1661EA-60E1-4480-8EE9-D0B0C552191A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE1661EA-60E1-4480-8EE9-D0B0C552191A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE1661EA-60E1-4480-8EE9-D0B0C552191A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8709B894-979D-461C-A952-B7AE34AF8EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8709B894-979D-461C-A952-B7AE34AF8EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8709B894-979D-461C-A952-B7AE34AF8EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8709B894-979D-461C-A952-B7AE34AF8EF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8709B894-979D-461C-A952-B7AE34AF8EF9} = {19D8839C-C97B-4D94-8E3D-7C2699EFF303}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9457424A-03AF-443D-AF27-11DE7BD19097}

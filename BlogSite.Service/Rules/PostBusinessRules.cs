@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace BlogSite.Service.Rules;
 
-public sealed class PostBusinessRules
+
+
+public class PostBusinessRules
 {
 
-    public void PostIsNullCheck(Post post)
+    public virtual void PostIsNullCheck(Post post)
     {
         if(post is null)
         {

@@ -1,19 +1,12 @@
 using BlogSite.API.Middlewares;
 using BlogSite.DataAccess;
-using BlogSite.DataAccess.Abstracts;
-using BlogSite.DataAccess.Concretes;
 using BlogSite.DataAccess.Contexts;
 using BlogSite.Models.Entities;
 using BlogSite.Service;
-using BlogSite.Service.Abstratcts;
-using BlogSite.Service.Concretes;
-using BlogSite.Service.Profiles;
-using BlogSite.Service.Rules;
 using Core.Tokens.Configurations;
 using Core.Tokens.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

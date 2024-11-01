@@ -29,6 +29,8 @@ public sealed class PostService : IPostService
         createdPost.Id = Guid.NewGuid();
         createdPost.AuthorId = userId;
 
+
+        // iş kuralı
         _postRepository.Add(createdPost);
 
         PostResponseDto response = _mapper.Map<PostResponseDto>(createdPost);
@@ -69,7 +71,6 @@ public sealed class PostService : IPostService
             StatusCode = 200,
             Success = true
         };
-
     }
 
     public ReturnModel<List<PostResponseDto>> GetAllByCategoryId(int id)
@@ -77,6 +78,9 @@ public sealed class PostService : IPostService
         throw new NotImplementedException();
     }
 
+
+    // GetById_WhenPostIsNotPresent_ThrowsException()
+    // GetById_WhenPostIsPresent_ReturnsSuccess()
     public ReturnModel<PostResponseDto?> GetById(Guid id)
     {
         var post = _postRepository.GetById(id);
@@ -98,7 +102,7 @@ public sealed class PostService : IPostService
     {
         Post post = _postRepository.GetById(id);
 
-        post.Title.SalladıgımMetod();
+       
         Post deletedPost = _postRepository.Remove(post);
 
         PostResponseDto response = _mapper.Map<PostResponseDto>(deletedPost);
