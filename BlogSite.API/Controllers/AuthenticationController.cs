@@ -8,7 +8,7 @@ namespace BlogSite.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthenticationController(IAuthenticationService _authenticationService,DecoderService decoderService) : CustomBaseController(decoderService)
+public class AuthenticationController(IAuthenticationService _authenticationService) : ControllerBase
 {
 
     [HttpPost("login")]

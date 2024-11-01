@@ -5,6 +5,7 @@ using BlogSite.Models.Dtos.Posts.Requests;
 using BlogSite.Models.Dtos.Posts.Responses;
 using BlogSite.Models.Entities;
 using BlogSite.Service.Abstratcts;
+using BlogSite.Service.Rules;
 using Core.Responses;
 
 namespace BlogSite.Service.Concretes;
@@ -13,11 +14,13 @@ public sealed class PostService : IPostService
 {
     private readonly IPostRepository _postRepository;
     private readonly IMapper _mapper;
+    private readonly PostBusinessRules _businessRules;
 
-    public PostService(IPostRepository postRepository, IMapper mapper)
+    public PostService(IPostRepository postRepository, IMapper mapper, PostBusinessRules rules)
     {
         _postRepository = postRepository;
         _mapper = mapper;
+        _businessRules = rules;
     }
 
     public ReturnModel<PostResponseDto> Add(CreatePostRequest create, string userId)
@@ -77,6 +80,7 @@ public sealed class PostService : IPostService
     public ReturnModel<PostResponseDto?> GetById(Guid id)
     {
         var post = _postRepository.GetById(id);
+        _businessRules.PostIsNullCheck(post);
 
         var response = _mapper.Map<PostResponseDto>(post);
 
@@ -93,6 +97,8 @@ public sealed class PostService : IPostService
     public ReturnModel<PostResponseDto> Remove(Guid id)
     {
         Post post = _postRepository.GetById(id);
+
+        post.Title.SalladıgımMetod();
         Post deletedPost = _postRepository.Remove(post);
 
         PostResponseDto response = _mapper.Map<PostResponseDto>(deletedPost);

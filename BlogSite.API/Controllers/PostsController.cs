@@ -4,13 +4,13 @@ using Core.Tokens.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BlogSite.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
-public class PostsController(IPostService _postService,DecoderService decoderService): CustomBaseController(decoderService)
+public class PostsController(IPostService _postService): ControllerBase
 {
 
     [HttpGet("getall")]
@@ -24,7 +24,7 @@ public class PostsController(IPostService _postService,DecoderService decoderSer
     [HttpPost("add")]
     public IActionResult Add([FromBody] CreatePostRequest dto)
     {
-        var userId = GetUser();
+        var userId = HttpContext.User.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.NameIdentifier).Value;
         var result = _postService.Add(dto,userId);
         return Ok(result);
     }

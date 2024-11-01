@@ -1,10 +1,14 @@
+using BlogSite.API.Middlewares;
+using BlogSite.DataAccess;
 using BlogSite.DataAccess.Abstracts;
 using BlogSite.DataAccess.Concretes;
 using BlogSite.DataAccess.Contexts;
 using BlogSite.Models.Entities;
+using BlogSite.Service;
 using BlogSite.Service.Abstratcts;
 using BlogSite.Service.Concretes;
 using BlogSite.Service.Profiles;
+using BlogSite.Service.Rules;
 using Core.Tokens.Configurations;
 using Core.Tokens.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,20 +18,21 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
-builder.Services.AddAutoMapper(typeof(MappingProfiles));
-builder.Services.AddScoped<IPostRepository, EfPostRepository>();
 
-builder.Services.AddScoped<IJwtService, JwtService>();
-builder.Services.AddScoped<IAuthenticationService,AuthenticationService>();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+builder.Services.AddDataAccessDependencies(builder.Configuration);
+builder.Services.AddServiceDependencies();
+
+
+
 builder.Services.AddScoped<DecoderService>();
 builder.Services.AddHttpContextAccessor();
 
 
 builder.Services.Configure<TokenOption>(builder.Configuration.GetSection("TokenOption"));
 
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IPostService,PostService>();
+
 
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
@@ -67,11 +72,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseExceptionHandler(_ => { });
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllers();
 
