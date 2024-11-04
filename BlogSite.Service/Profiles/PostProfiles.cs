@@ -5,10 +5,10 @@ using BlogSite.Models.Entities;
 
 namespace BlogSite.Service.Profiles;
 
-public class MappingProfiles: Profile
+public class PostProfiles: Profile
 {
 
-    public MappingProfiles()
+    public PostProfiles()
     {
         CreateMap<CreatePostRequest, Post>();
         CreateMap<UpdatePostRequest, Post>();
